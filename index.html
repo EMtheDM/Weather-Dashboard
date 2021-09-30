@@ -8,7 +8,33 @@
     <title>My Weather Dashboard</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-3 p-2 search column">
+                <form class="border p-2" id="city-search">
+                    <h3>Search City</h3>
+                    <input class="form-input" id="city" type="text" autofocus="true">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+                <div class="past-searches border" id="past-search-buttons"></div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="row border selected-city" id="forecast">
+                    <div class="col-12">
+                        <h2 id="searched-city"></h2>
+                        <div class="list-group" id="current-weather"></div>
+                    </div>
+                </div>
+                <div class="row border" id="five-day-forecast">
+                    <h2 class="col-12" id="forecast"></h2>
+                    <div class="d-flex" id="five-day-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
