@@ -28,7 +28,7 @@ var saveSearch = function() {
 };
 
 var getCityWeather = function(city) {
-    var apiKey = "584e10a58c618d4c5f31c6397c232f50";
+    var apiKey = "00fa8b03126daafdd49a1dd442af1554";
     var apiURL = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
 
     fetch(apiURL)
@@ -79,6 +79,17 @@ var displayWeather = function(weather, searchCity) {
 }
 
 // UV Index Function
+var getUvIndex = function(latitude, longitude) {
+    var apiKey = "00fa8b03126daafdd49a1dd442af1554";
+    var apiURL = `api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${latitude}&lon=${longitude}`
+    fetch(apiURL)
+    .then(function(response) {
+        response.json().then(function(data) {
+            displayUvIndex(data)
+        });
+    });
+};
+
 var displayUvIndex = function(index) {
     uvIndexEl = document.createElement("div");
     uvIndexEl.textContent = "UV Index: ";
@@ -102,7 +113,7 @@ var displayUvIndex = function(index) {
 
 // 5 Day Forecast
 var getFiveDay = function(city) {
-    var apiKey = "ce7a700ef375174920ddc36d119708b1";
+    var apiKey = "00fa8b03126daafdd49a1dd442af1554";
     var apiURL = `api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
 
     fetch(apiURL)

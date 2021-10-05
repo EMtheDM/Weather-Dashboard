@@ -15,3 +15,14 @@ span.severe {
     color:white;
 }
 
+.search-column {
+    background-color:	#D3D3D3;
+}
+
+.list-group-item {
+    line-height: 0.5;
+    border: none;
+}
+.card-body {
+    flex:auto
+}
