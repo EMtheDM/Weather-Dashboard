@@ -1,0 +1,17 @@
+span.favorable {
+    padding: 3px;
+    background-color: green;
+    color:white;
+}
+
+span.moderate {
+    padding: 3px;
+    background-color: yellow;
+}
+
+span.severe {
+    padding: 3px;
+    background-color: red;
+    color:white;
+}
+
