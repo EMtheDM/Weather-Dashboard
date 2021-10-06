@@ -23,6 +23,13 @@ span.severe {
     line-height: 0.5;
     border: none;
 }
+
 .card-body {
-    flex:auto
+    flex:auto;
+    background-color: cadetblue;
+}
+
+.card-header {
+    background-color: cadetblue;
+    border-color: cadetblue;
 }

@@ -2,8 +2,8 @@ var cities = [];
 
 var cityFormEl = document.querySelector("#city-search");
 var cityInputEl = document.querySelector("#city");
+var currentWeatherEl = document.querySelector("#current-weather-container");
 var citySearchEl = document.querySelector("#searched-city");
-var currentWeatherEl = document.querySelector("#current-weather");
 var forecastTitleEl = document.querySelector("#forecast");
 var fiveDayContainerEl = document.querySelector("#five-day-container");
 var pastSearchButtonEl = document.querySelector("#past-search-buttons");
@@ -20,7 +20,7 @@ var submitForm = function(event) {
         alert("Please enter a City");
     }
     saveSearch();
-    pastSearch();
+    pastSearch(city);
 };
 
 var saveSearch = function() {
@@ -29,7 +29,7 @@ var saveSearch = function() {
 
 var getCityWeather = function(city) {
     var apiKey = "00fa8b03126daafdd49a1dd442af1554";
-    var apiURL = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
 
     fetch(apiURL)
     .then(function(response) {
@@ -45,12 +45,12 @@ var displayWeather = function(weather, searchCity) {
     citySearchEl.textContent = searchCity;
 
     var currentDate = document.createElement("span");
-    currentDate.textContent = "(" + moment(weather.dt.value).format("MMM D, YYYY" + ")");
+    currentDate.textContent = " (" + moment(weather.dt.value).format("MMM DD, YYYY") + ") ";
     citySearchEl.appendChild(currentDate);
 
     // Weather Image
     var weatherImg = document.createElement("img");
-    weatherImg.setAttribute("src", 'https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png');
+    weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`);
     citySearchEl.appendChild(weatherImg);
 
     // Temperature
@@ -81,7 +81,7 @@ var displayWeather = function(weather, searchCity) {
 // UV Index Function
 var getUvIndex = function(latitude, longitude) {
     var apiKey = "00fa8b03126daafdd49a1dd442af1554";
-    var apiURL = `api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${latitude}&lon=${longitude}`
+    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${latitude}&lon=${longitude}`
     fetch(apiURL)
     .then(function(response) {
         response.json().then(function(data) {
@@ -114,7 +114,7 @@ var displayUvIndex = function(index) {
 // 5 Day Forecast
 var getFiveDay = function(city) {
     var apiKey = "00fa8b03126daafdd49a1dd442af1554";
-    var apiURL = `api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
 
     fetch(apiURL)
     .then(function(response) {
@@ -129,11 +129,11 @@ var displayFiveDay = function(weather) {
     forecastTitleEl.textContent = "Five Day Forecast";
 
     var forecast = weather.list;
-        for(var i=5; i < forecast.length; i+8) {
+        for(var i=5; i < forecast.length; i=i+8) {
         var dailyForecast = forecast[i];
 
         var forecastEl = document.createElement("div");
-        forecastEl.classList = "card bg-primary text-light m2";
+        forecastEl.classList = "card text-light m2";
 
         var forecastDateEl = document.createElement("h4");
         forecastDateEl.textContent = moment.unix(dailyForecast.dt).format("MMM DD, YYYY");
@@ -143,7 +143,7 @@ var displayFiveDay = function(weather) {
 
         var weatherImg = document.createElement("img");
         weatherImg.classList = "card-body text-center";
-        weatherImg.setAttribute("src", "https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png");
+        weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
 
         forecastEl.appendChild(weatherImg);
 
