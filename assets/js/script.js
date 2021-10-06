@@ -65,7 +65,7 @@ var displayWeather = function(weather, searchCity) {
 
     // Wind Conditions
     var windEl = document.createElement("span");
-    windEl.textContent = "Wind Conditions: " + weather.wind.speed + " mph";
+    windEl.textContent = "Wind Conditions: " + weather.wind.speed + " MPH";
     windEl.classList = "list-group-item";
 
     currentWeatherEl.appendChild(temperatureEl);
@@ -143,21 +143,27 @@ var displayFiveDay = function(weather) {
 
         var weatherImg = document.createElement("img");
         weatherImg.classList = "card-body text-center";
-        weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
+        weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@4x.png`);
 
         forecastEl.appendChild(weatherImg);
 
         forecastTemperatureEl = document.createElement("span");
         forecastTemperatureEl.classList = "card-body text-center";
-        forecastTemperatureEl.textContent = dailyForecast.main.temp + " °F";
+        forecastTemperatureEl.textContent = "Temp: " + dailyForecast.main.temp + " °F";
 
         forecastEl.appendChild(forecastTemperatureEl);
 
         forecastHumidityEl = document.createElement("div");
         forecastHumidityEl.classList = "card-body text-center";
-        forecastHumidityEl.textContent = dailyForecast.main.humidity + " %";
+        forecastHumidityEl.textContent = "Humidity: " + dailyForecast.main.humidity + " %";
 
         forecastEl.appendChild(forecastHumidityEl);
+
+        forecastWindEl = document.createElement("div");
+        forecastWindEl.classList = "card-body text-center";
+        forecastWindEl.textContent = "Wind: " + dailyForecast.wind.speed + " MPH";
+
+        forecastEl.appendChild(forecastWindEl);
 
         fiveDayContainerEl.appendChild(forecastEl);
     };
